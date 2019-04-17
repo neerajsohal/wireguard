@@ -64,22 +64,20 @@ import WireGuard from 'react-native-wireguard';
 // Gets the version of the underying wireguard-go
 WireGuard.Version().then((v) => this.setState{version: v});
 
-// Config is a list of key-values
-// Each key-value is separated by newline
+// Config is of type wg-quick
 // MTU is optional and defaults to 1420
 // If endpoint resolves to multiple IP addresses,
 // IPv4 is preferred over IPv6
 var config = `
-    private_key=AChhQs3VpzOTnlCmKLYir59q1ul7vvfqRySXHT3Ru1E=\n
-    address=192.168.0.1/32\n
-    address=c0:a8::1/128\n
-    dns=192.168.0.0\n
-    dns=c0:a8::\n
-    mtu=1420\n
-    public_key=r1nsEJbtGiuORXk9EjbeVSXcDfdIdC7f47PCWLmrr1o=\n
-    allowed_ip=0.0.0.0/0\n
-    allowed_ip=::/0\n
-    endpoint=someserver.com:51820\n`;
+    [Interface]
+    PrivateKey = mBEJJwnMh6Ht9xLp88nTtHqmOY9pnN7YdriotquvgVI=
+    Address = 192.168.7.237/32, fdaa::7f3/128
+    DNS = 192.168.0.0, fdaa::
+
+    [Peer]
+    PublicKey = Cf0rdfToO5gxg7ObB6dLbTwfElO3Xx7Fh8jJobmqCnE=
+    AllowedIPs = 0.0.0.0/0, ::/0
+    Endpoint = 209.97.177.222:51820`;
 
 // A name for your session
 var session = 'MyVPNSession';
